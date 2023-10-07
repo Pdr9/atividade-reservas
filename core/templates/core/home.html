@@ -13,8 +13,12 @@
 </head>
 
 <body>
-  <div >
-    <h1 style="text-align: center;">Reservas</h1>
+  <div style="display: flex; align-items: center; justify-content: space-between;">
+    <h1 class="display-3" style="text-align: center;">Reservas</h1>
+    <div>
+      <h3 class="display-5">Bem vindo, {{request.user.username}}</h3>
+      <a href="/admin/logout/">Fazer logout</a>
+    </div>
   </div>
   <br>
 
