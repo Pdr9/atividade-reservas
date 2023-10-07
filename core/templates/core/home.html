@@ -32,7 +32,7 @@
           <th scope="col">Categoria</th>
           <th scope="col">Quitado</th>
           <th scope="col">Valor</th>
-          <th scope="col">Data reserva</th>
+          <th scope="col">Data</th>
           <th scope="col">+</th>
         </tr>
       </thead>
@@ -40,11 +40,11 @@
         {% for reserva in reservas %}
         <tr scope="row">
           <td>{{ reserva.cnpj }}</td>
-          <td>{{ reserva.nome_empresa }}</td>
-          <td>{{ reserva.categoria_empresa }}</td>
+          <td>{{ reserva.name }}</td>
+          <td>{{ reserva.category }}</td>
           <td>{{ reserva.quitado }}</td>
-          <td>{{ reserva.stand.valor }}</td>
-          <td>{{ reserva.data_reserva }}</td>
+          <td>{{ reserva.stand.price }}</td>
+          <td>{{ reserva.date }}</td>
           <td>
             <div style="display: flex; flex-direction: column; align-items: center;">
               <a href="{% url 'detalhes_reserva' reserva.id %}">Detail</a>
@@ -64,7 +64,7 @@
       <h3>Filtros</h3>
     </div>
 
-    <form method="GET" action="{% url 'listagem' %}" style="display: flex; flex-direction: column; align-items: start; justify-content: space-evenly; flex-wrap: wrap;">
+    <form method="GET" action="{% url 'home' %}" style="display: flex; flex-direction: column; align-items: start; justify-content: space-evenly; flex-wrap: wrap;">
       <div style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
         <div class="form-group">
           <label for="search">Nome: </label>

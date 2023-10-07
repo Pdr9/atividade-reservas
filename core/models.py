@@ -4,24 +4,23 @@ from django.db import models
 
 
 class Stand(models.Model):
-    localizacao = models.CharField(max_length=100)
-    valor = models.FloatField()
+    location = models.CharField(max_length=100)
+    price = models.FloatField()
 
     def __str__(self):
-        return 'stand em '+self.localizacao
+        return self.location
 
 
 class Reserva(models.Model):
     class Meta:
-        ordering = ['data_reserva']
+        ordering = ['date']
 
     cnpj = models.CharField(max_length=100)
-    nome_empresa = models.CharField(max_length=100)
-    categoria_empresa = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
     quitado = models.BooleanField()
     stand = models.ForeignKey(Stand, on_delete=models.CASCADE)
-    data_reserva = models.DateTimeField(auto_now_add=True)  
+    date = models.DateTimeField(auto_now_add=True)  
 
     def __str__(self):
-        return self.nome_empresa
-
+        return self.name
