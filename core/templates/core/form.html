@@ -5,48 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<<<<<<< HEAD
-
-    <style>
-        .cadastro-reserva {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 0 auto;
-            width: 500px;
-            border-radius: 5px;
-        }
-
-        .btn-cadastrar {
-            background-color: #007bff;
-            color: white;
-            border: 1px solid #007bff;
-            border-radius: 4px;
-            padding: 10px;
-            margin-top: 10px;
-            display: block;
-            width: 100%;
-        }
-    </style>
-=======
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
->>>>>>> 4798a7a7375c2592135db3e07638f89d7a77bb53
 </head>
 
 <body>
     <h1>Cadastro de Reserva</h1>
     <hr>
-<<<<<<< HEAD
-
-    <form method="post" class="cadastro-reserva">
-        {% csrf_token %}
-        {{ form.as_p }}
-
-        <button type="submit" class="btn btn-primary btn-cadastrar">Cadastrar Reserva</button>
-    </form>
-
-    <a href="{% url 'listagem' %}">Voltar para a listagem</a>
-=======
     <div class="container">
         <form method="post">
             {% csrf_token %}
@@ -64,7 +29,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
->>>>>>> 4798a7a7375c2592135db3e07638f89d7a77bb53
 </body>
 
 </html>

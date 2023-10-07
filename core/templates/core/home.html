@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div >
+    <h1 style="text-align: center;">Reservas</h1>
+  </div>
+  <br>
+
+  <div class="container">
+    <div style="margin-top: 2%; display: flex; justify-content: end;">
+
+      <a href="{% url 'reserva_criar'%}"><button class="btn btn-secondary"> Cadastrar reserva</button></a>
+    </div>
+    <br>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">CNPJ</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Categoria</th>
+          <th scope="col">Quitado</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Data reserva</th>
+          <th scope="col">+</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for reserva in reservas %}
+        <tr scope="row">
+          <td>{{ reserva.cnpj }}</td>
+          <td>{{ reserva.nome_empresa }}</td>
+          <td>{{ reserva.categoria_empresa }}</td>
+          <td>{{ reserva.quitado }}</td>
+          <td>{{ reserva.stand.valor }}</td>
+          <td>{{ reserva.data_reserva }}</td>
+          <td>
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <a href="{% url 'detalhes_reserva' reserva.id %}">Detail</a>
+              <br>
+              <a href="{% url 'excluir_reserva' reserva.id %}"> Delete
+            </a>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="container">
+    <hr>
+    <div>
+      <h3>Filtros</h3>
+    </div>
+
+    <form method="GET" action="{% url 'listagem' %}" style="display: flex; flex-direction: column; align-items: start; justify-content: space-evenly; flex-wrap: wrap;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+        <div class="form-group">
+          <label for="search">Nome: </label>
+          <input
+          type="text"
+          class="form-control"
+          name="name"
+          id="search"
+          value="{{query}}"
+        />
+        </div>
+        <div class="form-group">
+          <label for="valor">Preço:</label>
+          <input type="number" name="price" id="price" class="form-control"/>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+        <div class="form-group">
+          <label for="data_reserva">Data:</label>
+          <input type="date" name="date" id="date" class="form-control"/>
+        </div>
+        Quitado:
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 15px;">
+          
+          <div class="form-check">
+              <input class="form-check-input" type="checkbox" name="quitado" id="true" value={{True}} class="form-control"/>
+              <label for="quitado" class="form-check-label">Sim:</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input"  type="checkbox" name="quitado" id="false" value={{False}} class="form-control"/>
+            <label for="false" class="form-check-label">Não:</label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="form-group">
+        <button type="submit" class="btn btn-secondary">Filtrar</button>
+      </div>
+    </form>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
