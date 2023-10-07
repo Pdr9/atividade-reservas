@@ -1,5 +1,6 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
+from django.core.paginator import Paginator
 from .forms import ReservaForm
 from .models import Reserva
 
@@ -21,7 +22,13 @@ def list_reserva(request):
     else:
         reservas = Reserva.objects.all()
 
-    return render(request, 'core/home.html', {'reservas': reservas})
+    paginator = Paginator(reservas, 5)
+
+    page = request.GET.get('page')
+
+    return render(request, 'core/home.html', {
+        'reservas': reservas,
+        'page_obj': paginator.get_page(page)})
 
 
 def create(request):
