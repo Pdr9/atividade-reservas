@@ -1,0 +1,9 @@
+1. python manage.py shell | # Abre o shell do django
+
+2. from core.models import Reserva | # Importação do model
+
+3. print(Reserva.objects.filter(quitado=True)) | # Questão 1
+
+4. print(Reserva.objects.filter(data reserva__date__gte = datetime.date(2023, 8, 20))) |# Questão 2
+
+5. print(Reserva.objects.filter(stand__price__gte = 300)) | # Questão 3
