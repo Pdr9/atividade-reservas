@@ -5,21 +5,24 @@ from .models import Reserva
 
 
 def list_reserva(request):
-    name = request.GET.get("name") if request.GET.get("name") is not None else ""
-    date = request.GET.get("date") if request.GET.get("date") is not None else ""
-    price = request.GET.get("price") if request.GET.get("price") is not None else "" 
+    name = request.GET.get("name", "")
+    date = request.GET.get("date", "")
+    price = request.GET.get("price", "") 
     quitado = request.GET.get("quitado")
 
-    if request.GET.get("name") is not None:
-        reservas = Reserva.objects.filter(
-            Q(name__icontains=name) &
-            Q(date__contains=date) &
-            Q(stand__price__icontains=price)
-        )
-        if quitado is not None:
-            reservas = reservas.filter(quitado=quitado)
-    else:
-        reservas = Reserva.objects.all()
+    reservas = Reserva.objects.all()
+
+    if name:
+        reservas = reservas.filter(name__icontains=name)
+    if date:
+        reservas = reservas.filter(date__contains=date)
+    if price:
+        reservas = reservas.filter(stand__price__icontains=price)
+    if quitado is not None:
+        if quitado.lower() == "true":
+            reservas = reservas.filter(quitado=True)
+        elif quitado.lower() == "false":
+            reservas = reservas.filter(quitado=False)
 
     return render(request, 'core/home.html', {'reservas': reservas})
 
