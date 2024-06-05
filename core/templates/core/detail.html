@@ -1,56 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
-    crossorigin="anonymous"></script>
-</head>
-
-<body>
-    <main style="margin: 2%;">
-        <h2 style="text-align: center;">Detalhamento de Reserva: {{reserva.name}}</h2>
-        <br>
-        <div class="container">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+         crossorigin="anonymous"></script>
+   </head>
+   <body>
+      <main style="margin: 2%;">
+         <div class="container">
             <hr>
             <div class="jumbotron jumbotron-fluid">
-                <div class="container">
-                  <h1 class="display-4">{{reserva.name}}</h1>
+               <div class="container">
+                  <h1 class="display-4">Ticket de {{ reserva.name|capfirst }}</h1>
                   <ul class="list-group">
-                    <li class="list-group-item list-group-item-secondary">cnpj: {{reserva.cnpj}}</li>
-                    <li class="list-group-item list-group-item-secondary">Categoria: {{reserva.category}}</li>
-                    <li class="list-group-item list-group-item-secondary">data: {{reserva.date}}</li>
-                    <li class="list-group-item list-group-item-secondary">preço: {{reserva.stand.price}}</li>
-                    <li class="list-group-item list-group-item-secondary">quitado: {% if reserva.quitado %} Sim {% else %} Não {% endif %}</li>
-                </ul>
-                <hr class="my-4">
-                  <h4 class="lead">Stand:</h4>
-                  <ul class="list-group">
-                    <li class="list-group-item list-group-item-secondary">Local: {{reserva.stand.location}}</li>
-                    <li class="list-group-item list-group-item-secondary">Preço: {{reserva.stand.price}}</li>
+                     <li class="list-group-item list-group-item-secondary"><b>CNPJ:</b> {{reserva.cnpj}}</li>
+                     <li class="list-group-item list-group-item-secondary"><b>CATEGORIA:</b> {{reserva.category}}</li>
+                     <li class="list-group-item list-group-item-secondary"><b>DATA:</b> {{reserva.date|date:"d/m/Y"}}</li>
+                     <li class="list-group-item list-group-item-secondary"><b>PREÇO:</b> {{ reserva.stand.price|floatformat:2}} R$</li>
+                     <li class="list-group-item list-group-item-secondary"><b>PAGO:</b> {% if reserva.quitado %} Sim {% else %} Não {% endif %}</li>
                   </ul>
-                <hr class="my-4">
-                <a href="{% url 'excluir_reserva' reserva.id %}"><button class="btn btn-secondary"> Excluir</button></a>
-                <a href=""><button class="btn btn-secondary" disabled> Editar</button></a>
-                </div>
-              </div>
+                  <hr class="my-4">
+                  <h4 class="lead">STAND:</h4>
+                  <ul class="list-group">
+                     <li class="list-group-item list-group-item-secondary"><b>LOCAL:</b> {{reserva.stand.location}}</li>
+                     <li class="list-group-item list-group-item-secondary"><b>PREÇO:</b> {{reserva.stand.price|floatformat:2}} R$</li>
+                  </ul>
+                  <hr class="my-4">
+                  <a href="{% url 'excluir_reserva' reserva.id %}"><button class="btn btn-danger"><i class="bi bi-archive-fill"></i></button></a>
+                  <a href="{% url 'edit_reserva' reserva.id %}" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a>
+               </div>
             </div>
-    </main>
-  
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
-</body>
-
+         </div>
+      </main>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+         crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+         crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+         crossorigin="anonymous"></script>
+   </body>
 </html>

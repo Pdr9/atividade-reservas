@@ -44,3 +44,14 @@ def delete_reserva(request, id):
 def detail_reserva(request, id):
     reserva = get_object_or_404(Reserva, pk=id)
     return render(request, 'core/detail.html', {'reserva': reserva})
+
+def edit_reserva(request, id):
+    reserva = get_object_or_404(Reserva, pk=id)
+    if request.method == 'POST':
+        form = ReservaForm(request.POST, request.FILES, instance=reserva)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    else:
+        form = ReservaForm(instance=reserva)
+    return render(request, 'core/form.html', {'form': form})
