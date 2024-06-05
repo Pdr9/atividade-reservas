@@ -15,7 +15,7 @@ class Reserva(models.Model):
     class Meta:
         ordering = ['date']
 
-    cnpj = models.CharField(max_length=100)
+    cnpj = models.CharField(max_length=18)
     name = models.CharField(max_length=100)
     category = models.CharField(max_length=100)
     quitado = models.BooleanField()
