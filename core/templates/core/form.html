@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1>Cadastro de Reserva</h1>
+    <h1 class="text-center">Cadastro de Reserva</h1>
     <hr>
     <div class="container">
         <form method="post">
@@ -18,7 +18,9 @@
             <div class="form-group">
                 <label for="cnpj">CNPJ</label>
                 {{ form.cnpj }}
+                <small id="cnpj-description" class="form-text text-muted">Formato esperado: 00.000.000/0001-00</small>
             </div>
+            
             <div class="form-group">
                 <label for="name">Nome</label>
                 {{ form.name }}
@@ -27,7 +29,7 @@
                 <label for="category">Categoria</label>
                 {{ form.category }}
             </div>
-            <div class="form-group">
+            <div  class="form-group">
                 <label for="quitado">Quitado</label>
                 {{ form.quitado }}
             </div>
@@ -35,7 +37,7 @@
                 <label for="stand">Stand</label>
                 {{ form.stand }}
             </div>
-            <button type="submit" class="btn btn-secondary">Cadastrar Reserva</button>
+            <button type="submit" class="btn btn-success">Cadastrar Reserva</button>
         </form>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
