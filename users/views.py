@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
-from django.contrib.auth import authenticate, login as auth_login  # Alias para a função de login do Django
+from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout
+from rolepermissions.roles import assign_role
 
 def cadastro(request):
     if request.method == "GET":
@@ -23,6 +24,7 @@ def cadastro(request):
         
         user = User.objects.create_user(username=username, email=email, password=senha, first_name=first_name, last_name=last_name)
         user.save()
+        assign_role(user, 'gerente')
         return redirect('login')
 
     
