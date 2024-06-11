@@ -11,6 +11,9 @@ def cadastro(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         senha = request.POST.get('senha')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+
 
         user = User.objects.filter(username=username).first()
     
@@ -18,7 +21,7 @@ def cadastro(request):
             error_message = 'Já existe um usuário com esse username'
             return render(request, 'cadastro.html', {'error_message': error_message})
         
-        user = User.objects.create_superuser(username=username, email=email, password=senha)
+        user = User.objects.create_user(username=username, email=email, password=senha, first_name=first_name, last_name=last_name)
         user.save()
         return redirect('login')
 
