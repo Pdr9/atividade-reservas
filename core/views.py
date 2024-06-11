@@ -1,9 +1,11 @@
-from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ReservaForm
 from .models import Reserva
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
+@login_required
 def list_reserva(request):
     name = request.GET.get("name", "")
     date = request.GET.get("date", "")
@@ -26,7 +28,7 @@ def list_reserva(request):
 
     return render(request, 'core/home.html', {'reservas': reservas})
 
-
+@login_required
 def create(request):
     if request.method == 'POST':
         form = ReservaForm(request.POST, request.FILES)
@@ -38,16 +40,17 @@ def create(request):
     form = ReservaForm()
     return render(request, "core/form.html", {'form': form})
 
-
+@login_required
 def delete_reserva(request, id):
     get_object_or_404(Reserva, pk=id).delete()
     return redirect('home')
 
-
+@login_required
 def detail_reserva(request, id):
     reserva = get_object_or_404(Reserva, pk=id)
     return render(request, 'core/detail.html', {'reserva': reserva})
 
+@login_required
 def edit_reserva(request, id):
     reserva = get_object_or_404(Reserva, pk=id)
     if request.method == 'POST':
@@ -58,3 +61,8 @@ def edit_reserva(request, id):
     else:
         form = ReservaForm(instance=reserva)
     return render(request, 'core/form.html', {'form': form})
+
+@login_required
+def lista_usuarios(request):
+    usuarios = User.objects.all()
+    return render(request, 'core/lista_usuarios.html', {'usuarios': usuarios})

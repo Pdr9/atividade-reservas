@@ -47,17 +47,16 @@
   </head>
   
   <body>
-      <!-- Barra lateral -->
       <nav class="sidebar">
           <ul class="nav flex-column">
               <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="bi bi-person"></i> Login</a>
+                  <a class="nav-link" href="{% url 'logout' %}"><i class="bi bi-person"></i> Sair</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="#"><i class="bi bi-gear"></i> Configurações</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="bi bi-people"></i> Usuários</a>
+                  <a class="nav-link" href="{% url 'lista_usuarios' %}"><i class="bi bi-people"></i> Usuários</a>
               </li>
               <!-- Adicione outras funcionalidades administrativas aqui -->
           </ul>
@@ -116,7 +115,7 @@
         <!-- Tabela de reservas -->
         <div style="margin-top: 2%;">
             <table class="table table-striped table-bordered">
-                <thead class="thead-dark">
+                <thead>
                     <tr>
                         <th scope="col">CNPJ</th>
                         <th scope="col">Nome</th>
@@ -124,12 +123,12 @@
                         <th scope="col">Quitado</th>
                         <th scope="col">Valor</th>
                         <th scope="col">Data</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col"><a href="{% url 'reserva_criar'%}"><button class="btn btn-success"> Cadastrar</button></a></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for reserva in reservas %}
-                    <tr>
+                    <tr style="font-size: 18px;">
                         <td>{{ reserva.cnpj }}</td>
                         <td>{{ reserva.name }}</td>
                         <td>{{ reserva.category }}</td>
@@ -153,7 +152,7 @@
     integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7HUi bX39j7fakFPskvXusvfa0b4Q"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
