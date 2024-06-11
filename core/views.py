@@ -111,9 +111,20 @@ def financeiro(request):
     vendas_por_dia = Reserva.objects.values('date__date').annotate(total=Count('id')).order_by('-total')
     dia_mais_vendas = vendas_por_dia[0] if vendas_por_dia else None
 
+    # Artista que vendeu mais
+    artista_mais_vendas = Reserva.objects.values('stand__artista').annotate(total_vendas=Count('id')).order_by('-total_vendas').first()
+    if artista_mais_vendas:
+        nome_artista_mais_vendas = artista_mais_vendas['stand__artista']
+        total_vendas_artista_mais_vendas = artista_mais_vendas['total_vendas']
+    else:
+        nome_artista_mais_vendas = None
+        total_vendas_artista_mais_vendas = None
+
     context = {
         'total_arrecadado': total_arrecadado,
         'dia_mais_vendas': dia_mais_vendas,
+        'nome_artista_mais_vendas': nome_artista_mais_vendas,
+        'total_vendas_artista_mais_vendas': total_vendas_artista_mais_vendas,
     }
 
     return render(request, 'core/financeiro.html', context)
