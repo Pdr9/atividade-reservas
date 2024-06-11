@@ -27,17 +27,17 @@
          .sidebar a:hover {
          background-color: #495057;
          }
-         .sidebar .nav-item:last-child .nav-link {
-            margin-top: 735px;
-         }
       </style>
    </head>
    <body>
       <nav class="sidebar">
          <ul class="nav flex-column">
             <li class="nav-item">
-               <a class="nav-link" href="#"><i class="bi bi-gear"></i> Configurações</a>
+               <a class="nav-link" href="{% url 'financeiro' %}"><i class="bi bi-gear"></i> Financeiro</a>
             </li>
+            <li class="nav-item">
+               <a class="nav-link" href="{% url 'criar_stand' %}"><i class="bi bi-currency-exchange"></i> Reservas</a>
+              </li>
             <li class="nav-item">
                <a class="nav-link" href="{% url 'lista_usuarios' %}"><i class="bi bi-people"></i> Usuários</a>
             </li>
@@ -74,6 +74,10 @@
             <div class="form-group">
                <label for="stand">Stand</label>
                {{ form.stand }}
+            </div>
+            <div class="form-group">
+               <label for="stand">Artista</label>
+               {{ form.artista }}
             </div>
             <a href="{% url 'home' %}" class="btn btn-success"><i class="bi bi-arrow-return-left"></i></a>
             <button type="submit" class="btn btn-success">Cadastrar Reserva</button>

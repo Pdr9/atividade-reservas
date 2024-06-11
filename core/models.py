@@ -6,7 +6,8 @@ from django.db import models
 class Stand(models.Model):
     location = models.CharField(max_length=100)
     price = models.FloatField()
-
+    artista = models.CharField(max_length=100, null=True, blank=True, default=None)
+    
     def __str__(self):
         return self.location
 

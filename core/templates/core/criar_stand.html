@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Stand</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            height: 100%;
+            width: 160px;
+            background-color: #343a40;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar a {
+            padding: 10px;
+            display: block;
+            color: #fff;
+            border-top: 1px solid #495057;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #495057;
+        }
+    </style>
+</head>
+<body>
+<nav class="sidebar">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'financeiro' %}"><i class="bi bi-gear"></i> Financeiro</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'criar_stand' %}"><i class="bi bi-currency-exchange"></i></i> Reservas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'lista_usuarios' %}"><i class="bi bi-people"></i> Usuários</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home' %}"><i class="bi bi-house"></i> Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}"><i class="bi bi-person"></i> Sair</a>
+        </li>
+    </ul>
+</nav>
+<div class="container">
+    
+    <h2 class="mt-5">Lista de Stands</h2>
+    <table class="table mt-3">
+        <thead>
+        <tr>
+            <th>Localização</th>
+            <th>Preço</th>
+            <th>Artista</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for stand in stands %}
+        <tr>
+            <td>{{ stand.location }}</td>
+            <td>{{ stand.price }}</td>
+            <td>{{ stand.artista }}</td>
+            <td>
+                <a href="{% url 'editar_stand' stand.id %}" class="btn btn-sm btn-primary"><i class="bi bi-pencil-fill"></i></a>
+                <a href="{% url 'deletar_stand' stand.id %}" class="btn btn-sm btn-danger"><i class="bi bi-archive-fill"></i></a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <h2>Criar Stand</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="location">Localização:</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Localização" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Preço:</label>
+            <input type="text" class="form-control" id="price" name="price" placeholder="Preço" required>
+        </div>
+        <div class="form-group">
+            <label for="artista">Artista:</label>
+            <input type="text" class="form-control" id="artista" name="artista" placeholder="Artista" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </form>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
