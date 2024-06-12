@@ -1,5 +1,4 @@
-﻿# reservas-finecap
-O projeto é uma aplicação web para a gestão de reservas de stands no evento Finecap, desenvolvida utilizando o framework Django. Este projeto foi realizado como parte de uma atividade do curso técnico de informática no IFRN. A aplicação implementa um sistema CRUD completo, permitindo aos usuários cadastrar, visualizar, editar e excluir reservas de stands.
+O sistema de reservas em Django é uma aplicação web com funcionalidades CRUD para gestão de reservas, autenticação de usuários e níveis de permissão. Utiliza o Bootstrap para um design responsivo e a biblioteca django-role-permissions para controle de acesso baseado em funções. O sistema permite criar, visualizar, atualizar e cancelar reservas, assegurando que apenas usuários autorizados realizem ações específicas através de um sistema de login seguro.
 
 A estrutura do projeto baseia-se em models do Django para representar as entidades do sistema, como reservas e stands. Cada reserva inclui detalhes como o nome do reservante, a data da reserva e a localização do stand no evento. Os dados são armazenados em um banco de dados relacional, e as operações CRUD são acessíveis através de interfaces de usuário desenvolvidas com as views e templates do Django.
 
